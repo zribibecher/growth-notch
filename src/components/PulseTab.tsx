@@ -39,79 +39,82 @@ export function PulseTab({
   const chips = others.slice(2);
 
   return (
-    <div className="flex flex-col gap-2.5 flex-1 min-h-0 tabular-nums">
-      <div className="flex items-end justify-between gap-3">
-        <div className="min-w-0">
-          <div className={`text-[9px] uppercase tracking-[0.14em] font-semibold ${t.muted}`}>
-            {hero.label}
-          </div>
-          <div className="flex items-baseline gap-2">
-            <div
-              data-testid={`card-${hero.key}`}
-              className={`text-[36px] leading-[1.05] font-semibold tracking-tight ${t.strong}`}
-            >
-              {hero.value(yt)}
+    <div className="flex flex-col gap-1 flex-1 min-h-0 tabular-nums">
+      {/* The numbers scroll if there are many; the footer below stays put. */}
+      <div className="flex flex-col gap-2.5 flex-1 min-h-0 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            <div className={`text-[9px] uppercase tracking-[0.14em] font-semibold ${t.muted}`}>
+              {hero.label}
             </div>
-            {hero.key === "subscribers" && subscriberDelta !== 0 && (
-              <span
-                data-testid="subs-delta"
-                title="Change since the app launched (YouTube rounds public counts)"
-                className={`text-[10.5px] font-semibold px-1.5 py-0.5 rounded-full ${
-                  subscriberDelta > 0
-                    ? "bg-emerald-500/15 text-emerald-400"
-                    : "bg-rose-500/15 text-rose-400"
-                }`}
-              >
-                {subscriberDelta > 0 ? "+" : ""}
-                {formatCompactNumber(subscriberDelta)}
-              </span>
-            )}
-          </div>
-        </div>
-
-        <div className="flex items-stretch gap-3 shrink-0">
-          {stats.map((metric) => (
-            <div key={metric.key} className={`pl-3 border-l min-w-[84px] ${t.hairline}`}>
+            <div className="flex items-baseline gap-2">
               <div
-                className={`text-[9px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap ${t.muted}`}
+                data-testid={`card-${hero.key}`}
+                className={`text-[36px] leading-[1.05] font-semibold tracking-tight ${t.strong}`}
               >
-                {metric.shortLabel ?? metric.label}
+                {hero.value(yt)}
               </div>
-              <div
-                data-testid={`card-${metric.key}`}
-                className={`text-[20px] leading-tight font-semibold tracking-tight ${t.tone(metric)}`}
-              >
-                {metric.value(yt)}
-              </div>
-              {metric.hint && (
-                <div className={`text-[9px] leading-tight ${t.muted}`}>{metric.hint}</div>
+              {hero.key === "subscribers" && subscriberDelta !== 0 && (
+                <span
+                  data-testid="subs-delta"
+                  title="Change since the app launched (YouTube rounds public counts)"
+                  className={`text-[10.5px] font-semibold px-1.5 py-0.5 rounded-full ${
+                    subscriberDelta > 0
+                      ? "bg-emerald-500/15 text-emerald-400"
+                      : "bg-rose-500/15 text-rose-400"
+                  }`}
+                >
+                  {subscriberDelta > 0 ? "+" : ""}
+                  {formatCompactNumber(subscriberDelta)}
+                </span>
               )}
             </div>
-          ))}
+          </div>
+
+          <div className="flex items-stretch gap-3 shrink-0">
+            {stats.map((metric) => (
+              <div key={metric.key} className={`pl-3 border-l min-w-[84px] ${t.hairline}`}>
+                <div
+                  className={`text-[9px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap ${t.muted}`}
+                >
+                  {metric.shortLabel ?? metric.label}
+                </div>
+                <div
+                  data-testid={`card-${metric.key}`}
+                  className={`text-[20px] leading-tight font-semibold tracking-tight ${t.tone(metric)}`}
+                >
+                  {metric.value(yt)}
+                </div>
+                {metric.hint && (
+                  <div className={`text-[9px] leading-tight ${t.muted}`}>{metric.hint}</div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
+
+        {chips.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {chips.map((metric) => (
+              <span
+                key={metric.key}
+                className={`inline-flex items-baseline gap-1.5 px-2 py-0.5 rounded-full border text-[10.5px] ${t.glass}`}
+              >
+                <span className={t.muted}>{metric.label}</span>
+                <strong data-testid={`card-${metric.key}`} className={t.tone(metric)}>
+                  {metric.value(yt)}
+                </strong>
+              </span>
+            ))}
+          </div>
+        )}
+
+        {enabled.includes("latest_upload_bar") && (
+          <LatestUpload theme={t} youtube={yt} now={now} imageVersion={lastUpdated} />
+        )}
       </div>
 
-      {chips.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
-          {chips.map((metric) => (
-            <span
-              key={metric.key}
-              className={`inline-flex items-baseline gap-1.5 px-2 py-0.5 rounded-full border text-[10.5px] ${t.glass}`}
-            >
-              <span className={t.muted}>{metric.label}</span>
-              <strong data-testid={`card-${metric.key}`} className={t.tone(metric)}>
-                {metric.value(yt)}
-              </strong>
-            </span>
-          ))}
-        </div>
-      )}
-
-      {enabled.includes("latest_upload_bar") && (
-        <LatestUpload theme={t} youtube={yt} now={now} imageVersion={lastUpdated} />
-      )}
-
-      <div className="mt-auto flex items-center justify-between text-[9.5px] -mb-1">
+      <div className="flex items-center justify-between text-[9.5px] -mb-1">
         {error ? (
           <span
             data-testid="status-msg"

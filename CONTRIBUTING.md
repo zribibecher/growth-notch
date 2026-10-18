@@ -17,15 +17,11 @@ The first launch opens the setup card. To start over, quit the app and delete `~
 
 ## How a change travels
 
-```mermaid
-flowchart LR
-    A[hooks/ and components/] -- invoke --> B[commands.rs]
-    B --> C[telemetry.rs]
-    C -- HTTPS --> D[(YouTube Data API)]
-    B --> E[credentials.rs]
-    F[watcher.rs cursor watcher] -- notch://hover --> A
-    G[screen.rs] -- layout hints --> A
-```
+In short:
+
+- The React hooks and components call Rust commands (`commands.rs`) and never the network.
+- `telemetry.rs` makes the HTTPS calls to the YouTube Data API and `credentials.rs` keeps the key.
+- `watcher.rs` watches the cursor and sends `notch://hover` to the UI, and `screen.rs` sends the layout.
 
 The web view makes no API calls. Anything that needs a secret or an HTTP request goes through a Rust command, and each command must be listed in `build.rs` and `capabilities/default.json` (a test fails if the lists drift apart). The cursor watcher is what tells the UI when to unfold, because WebKit does not report hover to a window that isn't focused.
 

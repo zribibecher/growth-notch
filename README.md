@@ -11,37 +11,19 @@
 
 <p align="center">
   <a href="https://github.com/zribibecher/growth-notch/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/zribibecher/growth-notch/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/zribibecher/growth-notch/releases"><img alt="Release" src="https://img.shields.io/github/v/release/zribibecher/growth-notch?include_prereleases"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
   <img alt="Platform: macOS" src="https://img.shields.io/badge/platform-macOS-lightgrey">
   <img alt="Built with Tauri 2" src="https://img.shields.io/badge/built%20with-Tauri%202-24C8DB">
 </p>
 
 <p align="center">
-  <img src="docs/assets/peek.png" width="340" alt="The peek pill showing 12.4K subscribers, 5.2K likes and 410 comments">
-  &nbsp;
-  <img src="docs/assets/dashboard.png" width="440" alt="The dashboard with subscribers, likes, comments and the latest upload">
+  <img src="docs/assets/demo.gif" width="760" alt="Hover the notch to peek, click to open the dashboard, pick your numbers, switch between light and dark">
 </p>
-<p align="center"><sub>Screenshots use sample data.</sub></p>
-
-<!--
-  A short screen recording belongs right here. Record idle, hover, click, tabs (8 to 10 seconds,
-  under 3 MB), save it as docs/assets/demo.gif, then add:
-  <p align="center"><img src="docs/assets/demo.gif" width="720" alt="Hover the notch to peek, click to open the dashboard"></p>
--->
+<p align="center"><sub>Recorded from the app with sample data.</sub></p>
 
 Growth Notch stays hidden at the top of your screen. Move the cursor to the notch and your channel unfolds: subscribers, likes and comments. Click and you get a small dashboard with your latest upload. Move away and it disappears again.
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle: invisible
-    Idle --> Peek: cursor reaches the notch
-    Peek --> Idle: cursor leaves
-    Peek --> Dashboard: click
-    Dashboard --> Idle: close button or cursor leaves
-```
-
-The Setup tab is the one exception to the last arrow. It stays open while you paste your key, so a stray mouse move can't close it.
+The Setup tab stays open while you paste your key, so a stray mouse move can't close it.
 
 ## Install
 
@@ -72,11 +54,14 @@ You bring your own free YouTube Data API key, so nothing goes through anyone els
 The Pulse tab shows your subscriber count as the headline, likes and comments next to it, and your latest upload with its thumbnail and age. The Metrics tab lets you add more numbers (total views, video count, average views, engagement and others). The sun icon switches between dark and light.
 
 <p align="center">
-  <img src="docs/assets/metrics.png" width="300" alt="The Metrics tab with a grid of toggles">
+  <img src="docs/assets/dashboard.png" width="440" alt="The dashboard with subscribers, likes, comments and the latest upload">
   &nbsp;
-  <img src="docs/assets/setup.png" width="300" alt="The Setup tab with one field for the key and channel ID">
+  <img src="docs/assets/dashboard-light.png" width="440" alt="The dashboard in the light theme">
+</p>
+<p align="center">
+  <img src="docs/assets/metrics.png" width="440" alt="The Metrics tab with a grid of toggles">
   &nbsp;
-  <img src="docs/assets/dashboard-light.png" width="300" alt="The dashboard in the light theme">
+  <img src="docs/assets/setup.png" width="440" alt="The Setup tab with one field for the key and channel ID">
 </p>
 
 ## On a Mac with a notch
