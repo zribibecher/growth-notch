@@ -1,0 +1,17 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "What the Growth Notch web view may do: listen for native events and call its own commands.",
+  "windows": ["notch"],
+  "permissions": [
+    "core:event:allow-listen",
+    "core:event:allow-unlisten",
+    "allow-save-api-key",
+    "allow-delete-api-key",
+    "allow-get-credential-status",
+    "allow-refresh-telemetry",
+    "allow-set-notch-expanded",
+    "allow-set-keyboard-focus",
+    "allow-get-screen-info"
+  ]
+}

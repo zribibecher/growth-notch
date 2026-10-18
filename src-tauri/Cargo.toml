@@ -1,0 +1,45 @@
+[package]
+name = "growth-notch"
+version = "0.1.0"
+description = "Ambient notch dashboard for YouTube creators"
+authors = ["Becher Zribi"]
+license = "MIT"
+repository = "https://github.com/zribibecher/growth-notch"
+homepage = "https://github.com/zribibecher/growth-notch"
+edition = "2021"
+rust-version = "1.90"
+
+[lib]
+name = "growth_notch_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api", "tray-icon"] }
+tauri-plugin-single-instance = "2"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { version = "1", features = ["sync", "time"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+zeroize = { version = "1", features = ["derive"] }
+chacha20poly1305 = "0.10"
+url = "2"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-foundation = { version = "0.3", features = ["NSGeometry", "NSArray"] }
+objc2-app-kit = { version = "0.3", features = [
+    "NSColor",
+    "NSEvent",
+    "NSHapticFeedback",
+    "NSPanel",
+    "NSResponder",
+    "NSScreen",
+    "NSWindow",
+] }
+
+[dev-dependencies]
+# Only the fake YouTube server in the tests needs these.
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "io-util"] }

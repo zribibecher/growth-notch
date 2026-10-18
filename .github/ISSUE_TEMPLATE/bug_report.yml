@@ -1,0 +1,68 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Notch bugs are mostly display-configuration bugs, so the details below help a lot.
+        Never paste your API key.
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: In Finder, select Growth Notch and press Cmd+I.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac model
+      placeholder: "macOS 15.2, MacBook Pro 14-inch (M3)"
+    validations:
+      required: true
+  - type: dropdown
+    id: display
+    attributes:
+      label: Display setup
+      options:
+        - Built-in display only
+        - Built-in + external monitor
+        - External monitor only (clamshell)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Where does it go wrong?
+      options:
+        - Nothing ever appears
+        - Hover does not open the pill
+        - Click does not open the dashboard
+        - Layout or clipping (idle / peek / expanded)
+        - Numbers are wrong or missing
+        - Setup / API key
+        - Menu bar icon
+        - Crash or freeze
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected vs what happened
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshot
+      description: Run `/Applications/GrowthNotch.app/Contents/MacOS/growth-notch` in Terminal and paste the output. Remove any keys.

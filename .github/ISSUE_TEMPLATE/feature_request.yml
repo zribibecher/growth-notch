@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to see?
+    validations:
+      required: true
+  - type: input
+    id: api
+    attributes:
+      label: Which YouTube API field provides it?
+      description: The app stays on the free YouTube Data API v3. A link to the field in the docs is ideal.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Fit
+      options:
+        - label: It stays quiet and glanceable (no extra windows or notifications)
+        - label: It needs no account, backend or paid service

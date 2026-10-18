@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background: transparent;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent !important;
+  font-feature-settings: "tnum", "cv11";
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* SwiftUI spring(response 0.62, dampingFraction 0.72), sampled into CSS linear() (peak overshoot 1.038) */
+:root {
+  --notch-spring: linear(
+    0,
+    0.045,
+    0.154,
+    0.293,
+    0.439,
+    0.578,
+    0.7,
+    0.801,
+    0.882,
+    0.942,
+    0.984,
+    1.012,
+    1.029,
+    1.037,
+    1.038,
+    1.036,
+    1.032,
+    1.027,
+    1.021,
+    1.016,
+    1.011,
+    1.007,
+    1.004,
+    1.002,
+    1,
+    0.999,
+    0.999,
+    0.999,
+    1
+  );
+  --notch-dur: 560ms;
+  --notch-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@supports not (transition-timing-function: linear(0, 1)) {
+  :root {
+    --notch-spring: cubic-bezier(0.22, 1, 0.36, 1);
+    --notch-dur: 240ms;
+  }
+}
+
+.notch-spring {
+  transform-origin: top center;
+  will-change: width, height, border-radius, opacity;
+  transition:
+    width var(--notch-dur) var(--notch-spring),
+    height var(--notch-dur) var(--notch-spring),
+    border-radius var(--notch-dur) var(--notch-spring),
+    opacity 180ms var(--notch-ease),
+    background-color 180ms ease;
+}
+
+/* Quiet depth: a faint top-lit sheen so black never reads as flat */
+.notch-surface.bg-\[\#000000\] {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0) 38%
+  );
+}
+
+.notch-pill-layer {
+  transform-origin: top center;
+  will-change: opacity, transform;
+  transition:
+    opacity 150ms var(--notch-ease) 60ms,
+    transform 260ms var(--notch-ease);
+}
+
+.notch-expanded-layer {
+  transform-origin: top center;
+  will-change: opacity, transform;
+  transition:
+    opacity 200ms var(--notch-ease) 120ms,
+    transform 320ms var(--notch-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notch-spring,
+  .notch-pill-layer,
+  .notch-expanded-layer {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Concave hardware-bezel ear fillets so the Notch blends into y=0 with zero seam */
+.notch-ear-left {
+  background: radial-gradient(circle at 0 100%, transparent 8px, #000000 8.5px);
+}
+
+.notch-ear-right {
+  background: radial-gradient(circle at 100% 100%, transparent 8px, #000000 8.5px);
+}
