@@ -17,9 +17,9 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/demo.gif" width="760" alt="Hover the notch to peek, click to open the dashboard, pick your numbers, switch between light and dark">
+  <img src="docs/assets/hero.png" width="900" alt="Growth Notch open at the top of a Mac screen: 12.4K subscribers, 5.2K likes, 410 comments and the latest upload">
 </p>
-<p align="center"><sub>Recorded from the app with sample data.</sub></p>
+<p align="center"><sub>Rendered from the app with sample data.</sub></p>
 
 Growth Notch stays hidden at the top of your screen. Move the cursor to the notch and your channel unfolds: subscribers, likes and comments. Click and you get a small dashboard with your latest upload. Move away and it disappears again.
 
