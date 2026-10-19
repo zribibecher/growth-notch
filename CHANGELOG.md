@@ -2,9 +2,9 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.0] - 2026-10-19
 
-The first public release. This section becomes `[0.1.0]`, with the date, when the tag is cut.
+The first public release.
 
 ### Added
 - The notch widget with three stages: an invisible idle state, a hover peek (subscribers, likes, comments) and a dashboard that opens on click, with a spring unfold.
